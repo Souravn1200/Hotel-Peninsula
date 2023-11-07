@@ -1,8 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 
 const Login = () => {
+
+    const{logInUser, createUserByGoogle} = useContext(AuthContext)
+    const [loginError, setLoginError] = useState()
+    const navigate = useNavigate()
+
+
+    const handleLogin = e => {
+        e.preventDefault();
+       const form = new FormData(e.currentTarget)
+       const email =  form.get('email')
+       const password =  form.get('password')
+
+       setLoginError('');
+
+       logInUser(email, password)
+       .then(result => {
+            navigate(location?.state ? location.state : '/')
+       })
+       .catch(error => {
+           setLoginError(error.message)
+          });
+
+          
+       }
+
+
+       const handleGoogleRegister = () =>{
+        createUserByGoogle()
+        .then(result => {
+
+            console.log(result)
+        })
+        .catch(error => {
+        setLoginError(error.message)
+       });
+}
+
     return (
+
+
         
         <div className='flex justify-center items-center h-screen gap-10'>
             
@@ -14,7 +54,7 @@ const Login = () => {
             </div>
             <div className=''>
                 <h2 className="text-3xl my-6 text-left font-serif">Please Login</h2>
-                <form className="mx-auto">
+                <form onSubmit={handleLogin} className="mx-auto">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -36,13 +76,13 @@ const Login = () => {
                 </form>
 
                 <div className="form-control mt-6 w-1/2 mx-auto">
-                    {/* <button onClick={handleGoogleRegister} className="btn text-white bg-[#3d657a] hover:bg-[#6096B4]">Register By Google</button> */}
+                    <button onClick={handleGoogleRegister} className="btn text-white bg-[#3d657a] hover:bg-[#6096B4]">Register By Google</button>
                 </div>
 
                 <p className="text-center mt-4">Do not have an account?  <Link className="text-blue-600 font-bold" to="/register">Register</Link></p>
 
                 {
-                // loginError && <p className='text-red-600 font-semibold text-center mt-4'>{loginError}</p>
+                loginError && <p className='text-red-600 font-semibold text-center mx-auto mt-4 w-2/3'>{loginError}</p>
             }
             </div>
 

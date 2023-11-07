@@ -1,13 +1,70 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
+
 
 const Register = () => {
+
+    const {createUser,logOut} = useContext(AuthContext)
+
+    const [regiError, setRegiError] = useState('')
+    const navigate = useNavigate()
+
+
+    const handleRegister = e => {
+        e.preventDefault();
+        const form = new FormData(e.currentTarget);
+        const name = form.get('name') 
+        const email =  form.get('email');
+        const password = form.get('password');
+        const upperCaseRegx = /[A-Z]/;
+        const specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?/~\\-]/
+
+
+        setRegiError('')
+
+        if(password.length < 6) {
+            setRegiError('Password should be 6 chartecters or longer.')
+            return;
+        } 
+        
+        // else if(!upperCaseRegx.test(password)){
+        //     setRegiError('Please make sure to put at least one Upper Case Charecter in password')
+
+        //     return
+        // }else if(!specialCharacterRegex.test(password)){
+        //     setRegiError('Please make sure to put at least one Special Charecter in password')
+        //     return;
+        // }
+
+        createUser( email, password)
+        .then(result => {
+            console.log('ami achi', result.user.email);
+
+            if(result?.user?.email){
+                navigate('/')
+            }
+         
+        })
+        .catch(error => {
+            setRegiError(error.message);
+        });
+
+    } 
+
+
+
+
+
+
+
+
+
+
     return (
 
-
-
-        <div className='flex justify-center items-center h-screen gap-10'>
         
+        <div className='flex justify-center items-center h-screen gap-10'>
         <div>
         <img src="https://i.ibb.co/G3Pgsgq/preview.png" className='h-[600px] -ml-16
                     ' alt="" />
@@ -16,7 +73,7 @@ const Register = () => {
 
         <div>
         <h2 className="text-3xl my-6 text-left font-serif">Please Register</h2>
-        <form className="mx-auto">
+        <form onSubmit={handleRegister} className="mx-auto">
             <div className="form-control">
                 <label className="label">
                     <span className="label-text">Name</span>
@@ -51,7 +108,7 @@ const Register = () => {
 
        
         {
-            // regiError && <p className='text-red-600 font-semibold text-center mt-4'>{regiError}</p>
+            regiError && <p className='text-red-600 font-semibold text-center mt-4'>{regiError}</p>
         }
     </div>
 
