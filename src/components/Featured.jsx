@@ -1,6 +1,15 @@
 import React from 'react';
 
 const Featured = () => {
+
+  // const galleryImageArr = [
+  //   https://i.ibb.co/7p1CWky/vojtech-bruzek-Yrxr3bs-Pd-S0-unsplash-1.jpg,
+  //   https://i.ibb.co/5v5yn64/markus-spiske-g5-ZIXjz-RGds-unsplash-1.jpg,
+  //   https://i.ibb.co/7WQVY44/frames-for-your-heart-Fqqi-Av-Jejto-unsplash-1.jpg
+  //   https://i.ibb.co/XJmsJG5/sasha-kaunas-Fk9d0cx-Yq-C4-unsplash-1.jpg
+
+  // ]
+
     return (
         <div className=''>
 
