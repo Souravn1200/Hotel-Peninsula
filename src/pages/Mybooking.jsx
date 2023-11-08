@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Mybooking = () => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const [myBookings, setMyBookings] = useState([]);
-  
+  console.log(myBookings);
   useEffect(() => {
-    if (user && email) {
 
-      axios.get(`http://localhost:5000/mybooking/${email}`, {withCredentials: true})
+
+      axios.get(`http://localhost:5000/mybooking?email=${email}`,{withCredentials: true})
       .then(res => {
         setMyBookings(res.data)
+        console.log(res.data);
       })
       
       // fetch(`http://localhost:5000/mybooking/${email}`, {
@@ -26,8 +28,8 @@ const Mybooking = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-    }
-  }, [user]);
+   
+  }, [user, email]);
 
 
   const handleDelete = _id => {
@@ -54,7 +56,12 @@ const Mybooking = () => {
             <h2 className="card-title text-white">{book.room_description}</h2>
             <div className='flex justify-around gap-10 mt-5'>
             <div className="card-actions justify-start">
-              <button className="btn btn-accent ">Buy Now</button>
+
+        <p className='text-white'>Booking date: {book.date}</p>
+        <p className='text-white'>Price: {book.price_per_night}$</p>
+
+          <Link to={`/update/${book._id}`}> <button className="btn btn-accent ">Update Date</button> </Link>
+
             </div>
             <div className="card-actions justify-end ">
               <button className="btn btn-primary bg-[#2b3440] hover:bg-[#2b3440]" onClick={() => handleDelete(book._id)}>Delete</button>

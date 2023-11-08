@@ -2,16 +2,28 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import axios from 'axios';
+import Mytoast from '../components/Mytoast';
 
 const Login = () => {
 
     const{logInUser, createUserByGoogle} = useContext(AuthContext)
     const [loginError, setLoginError] = useState()
     const navigate = useNavigate()
+    const [showToast, setShowToast] = useState(false);
 
+    const handleShowToast = () => {
+        setShowToast(true)
+      
+
+    }
+
+    const handleCloseToast = () => {
+        setShowToast(false)
+    }
 
     const handleLogin = e => {
         e.preventDefault();
+        
        const form = new FormData(e.currentTarget)
        const email =  form.get('email')
        const password =  form.get('password')
@@ -20,15 +32,8 @@ const Login = () => {
 
        logInUser(email, password)
        .then(result => {
-           
-            const user = {email}
-            axios.post('http://localhost:5000/jwt', user, {withCredentials:true})
-            .then(res => {
-                console.log(res.data)
-                if(res.data.success){
-                    navigate(location?.state ? location.state : '/')
-                }
-            })
+        navigate(location?.state ? location.state : '/')
+        console.log(result);
        })
        .catch(error => {
            setLoginError(error.message)
@@ -80,7 +85,7 @@ const Login = () => {
                         </label>
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn text-white bg-[#3d657a] hover:bg-[#6096B4]">Login</button>
+                        <button className="btn text-white bg-[#3d657a] hover:bg-[#6096B4]" >Login</button>
                     </div>
                 </form>
 
@@ -94,7 +99,11 @@ const Login = () => {
                 loginError && <p className='text-red-600 font-semibold text-center mx-auto mt-4 w-2/3'>{loginError}</p>
             }
             </div>
-
+<Mytoast
+                message="Login successful"
+                showToast={showToast}
+                onClose={() => handleCloseToast()}
+            />
         </div>
     );
 };
