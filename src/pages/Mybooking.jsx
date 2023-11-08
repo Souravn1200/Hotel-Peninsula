@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Mybooking = () => {
   const { user } = useContext(AuthContext);
@@ -33,14 +34,35 @@ const Mybooking = () => {
 
 
   const handleDelete = _id => {
-    fetch(`http://localhost:5000/deletebooking/${_id}`, {
-      method: 'DELETE'
+
+    swal({
+      title: "Are you sure?",
+      text: "Our reservations are hard to get!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
     })
-    .then(res => res.json())
-    .then(data => {
-      const remaing = myBookings.filter(del => del._id !== _id)
-      setMyBookings(remaing)
+    .then((willDelete) => {
+
+      if(willDelete){
+        fetch(`http://localhost:5000/deletebooking/${_id}`, {
+          method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.deletedCount > 0) {
+            swal("Poof! Order has been deleted!", {
+              icon: "success",
+            });
+          }
+          const remaing = myBookings.filter(del => del._id !== _id)
+          setMyBookings(remaing)
+        })
+      }
+
     })
+
+   
   }
 
 

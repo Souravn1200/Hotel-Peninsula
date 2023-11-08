@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import axios from 'axios';
 import Mytoast from '../components/Mytoast';
+import swal from 'sweetalert';
+
 
 const Login = () => {
 
@@ -32,7 +34,10 @@ const Login = () => {
 
        logInUser(email, password)
        .then(result => {
+        
+        swal("Good job!", "You clicked the button!", "success");
         navigate(location?.state ? location.state : '/')
+        
         console.log(result);
        })
        .catch(error => {

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import swal from 'sweetalert';
 
 const Navbar = () => {
 
@@ -9,16 +10,17 @@ const {user, logOut} = useContext(AuthContext);
 const handleSingOut = () => [
   logOut()
   .then( () => {
+    swal("Logged Outt!", "See ya", "info");
       console.log('user loged out');
   })
   .catch
 ]
 
     const navLinks = <>
-    <li className='mr-1'><NavLink to="/">Home</NavLink></li>
-    <li className='mr-1'> <NavLink to="/login">Login</NavLink></li>
-    <li className='mr-1'> <NavLink to="/rooms">Rooms</NavLink></li>
-    <li className='mr-1'> <NavLink to="/mybooking">My Bookings</NavLink></li>
+    <li className='mr-1 font-thin'><NavLink to="/">Home</NavLink></li>
+    {/* <li className='mr-1'> <NavLink to="/login">Login</NavLink></li> */}
+    <li className='mr-1 font-thin'> <NavLink to="/rooms">Rooms</NavLink></li>
+    <li className='mr-1 font-thin'> <NavLink to="/mybooking">My Bookings</NavLink></li>
  
     </>
 
@@ -51,11 +53,11 @@ const handleSingOut = () => [
 
                    {
                 user ? <> <br />
-                        <button onClick={handleSingOut} className="btn text-white bg-[#6096B4] hover:bg-[#3d657a]">LogOut</button>
+                        <button onClick={handleSingOut} className=" text-white py-2 px-4 rounded-md bg-[#6096B4] hover:bg-[#3d657a]">LogOut</button>
                 </> :
 
                 <Link to='/login'>
-                <button className="btn  text-white font-thin bg-[#6096B4] hover:bg-[#3d657a]">Login</button>
+                <button className=" text-white py-2 px-4 rounded-md bg-[#6096B4] hover:bg-[#3d657a]">Login</button>
                 </Link>
 
             }
