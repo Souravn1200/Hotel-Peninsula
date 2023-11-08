@@ -7,6 +7,7 @@ import Register from "../pages/Register";
 import RoomDetails from "../components/RoomDetails";
 import Mybooking from "../pages/Mybooking";
 import Update from "../pages/Update";
+import PageNotFound from "../components/Pagenotfound";
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
           path: 'update/:id',
           loader: ({params}) => fetch(`http://localhost:5000/update/${params.id}`),
           element: <Update></Update>
+        },
+        {
+          path: '*',
+          element: <PageNotFound></PageNotFound>
         }
       ]
     },
