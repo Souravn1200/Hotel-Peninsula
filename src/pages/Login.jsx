@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -19,7 +20,15 @@ const Login = () => {
 
        logInUser(email, password)
        .then(result => {
-            navigate(location?.state ? location.state : '/')
+           
+            const user = {email}
+            axios.post('http://localhost:5000/jwt', user, {withCredentials:true})
+            .then(res => {
+                console.log(res.data)
+                if(res.data.success){
+                    navigate(location?.state ? location.state : '/')
+                }
+            })
        })
        .catch(error => {
            setLoginError(error.message)

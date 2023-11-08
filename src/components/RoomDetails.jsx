@@ -24,8 +24,26 @@ const RoomDetails = () => {
         })
         .then(res => res.json())
         .then(data => {
+
+
+            fetch(`http://localhost:5000/rooms/${_id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify({...booking})
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('patch prob', data);
+        })
+
+
             console.log(data);
         })
+
+        
+
     }
     
 
@@ -81,7 +99,7 @@ const RoomDetails = () => {
 
 
 <div className="card-actions justify-center mt-8">
-                    <button className="btn btn-primary bg-[#2b3440] hover:bg-[#2b3440] " onClick={handleMyBooking}>Book Now</button>
+                    <button className="btn btn-primary bg-[#2b3440] hover:bg-[#2b3440] " onClick={handleMyBooking}>{availability === "available" ? "unavailable" : "available"}</button>
                 </div>
 
 </div>
