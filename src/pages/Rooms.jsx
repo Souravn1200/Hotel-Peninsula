@@ -31,8 +31,8 @@ const Rooms = () => {
     return (
         <div>
             <div className='ml-5'>
-          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4' onClick={handleHighToLow}>Height To Lowest</button>
-          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ' onClick={handleLowToHigh}>Lowest To Height</button>
+          <button className='bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded mr-4' onClick={handleHighToLow}>Height To Lowest</button>
+          <button className='bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded ' onClick={handleLowToHigh}>Lowest To Height</button>
 
         </div>
         
@@ -55,7 +55,7 @@ const Rooms = () => {
                 ${room.price_per_night}
               </span>
             </div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded">
               Book Now
             </button>
           </div>

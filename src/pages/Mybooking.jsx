@@ -74,7 +74,8 @@ const Mybooking = () => {
       </div>
     ))
   ) : (
-    <p className='mt-5 text-center text-2xl'>No Bookings available.</p>
+    <p className="mt-5 text-center text-2xl mx-auto w-[900px] font-serif ml-32">No Bookings available.</p>
+
   )}
 </div>
 
