@@ -31,16 +31,42 @@ const Rooms = () => {
     return (
         <div>
             <div className='ml-5'>
-          <button className='' onClick={handleHighToLow}>Height To Lowest</button>
-          <button className='btn btn-primary ' onClick={handleLowToHigh}>Lowest To Height</button>
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4' onClick={handleHighToLow}>Height To Lowest</button>
+          <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ' onClick={handleLowToHigh}>Lowest To Height</button>
+
         </div>
         
-        <div>{console.log(rooms.length)}
-           <div className='grid lg:grid-cols-4 gap-6 mt-6'>
-            {rooms?.length && rooms?.map(room => <Roomcard key={room._id} room={room}></Roomcard>)}
-            
+        <div className='w-[1200px] mx-auto'>
+  <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-6">
+    {rooms?.length > 0 ? (
+      rooms.map((room) => (
+        <div key={room._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img
+            src={room.image1} 
+           
+            className="w-full h-48 object-cover object-center"
+          />
+          <div className="p-4">
+            <h2 className="text-xl font-semibold">{room.room_description}</h2>
+            <p className="text-gray- mt-2">{room.description}</p>
+            <div className="mt-4 mb-4">
+              <span className="text-gray-600">Price:</span>
+              <span className="text-xl font-bold text-blue-500">
+                ${room.price_per_night}
+              </span>
+            </div>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Book Now
+            </button>
+          </div>
         </div>
-        </div>
+      ))
+    ) : (
+      <p>No rooms available.</p>
+    )}
+  </div>
+</div>
+
         </div>
     );
 };
