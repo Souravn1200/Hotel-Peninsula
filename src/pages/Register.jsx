@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import Pagetitle from '../components/Pagetitle';
 
 
 const Register = () => {
@@ -65,6 +66,7 @@ const Register = () => {
 
         
         <div className='flex justify-center items-center h-screen gap-10'>
+           
         <div>
         <img src="https://i.ibb.co/G3Pgsgq/preview.png" className='h-[600px] -ml-16
                     ' alt="" />

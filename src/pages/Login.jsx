@@ -4,6 +4,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import axios from 'axios';
 import Mytoast from '../components/Mytoast';
 import swal from 'sweetalert';
+import Pagetitle from '../components/Pagetitle';
 
 
 const Login = () => {
@@ -64,6 +65,7 @@ const Login = () => {
 
         
         <div className='flex justify-center items-center h-screen gap-10'>
+            <Pagetitle title={'Login page'}></Pagetitle>
             
             <div> 
 
