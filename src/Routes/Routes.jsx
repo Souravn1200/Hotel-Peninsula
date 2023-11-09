@@ -8,6 +8,7 @@ import RoomDetails from "../components/RoomDetails";
 import Mybooking from "../pages/Mybooking";
 import Update from "../pages/Update";
 import PageNotFound from "../components/Pagenotfound";
+import PrivateRoute from "../components/Privateroute";
 
 
 const router = createBrowserRouter([
@@ -34,11 +35,11 @@ const router = createBrowserRouter([
         {
           path: 'rooms/:id',
           loader: ({params}) => fetch(`http://localhost:5000/rooms/${params.id}`),
-          element: <RoomDetails></RoomDetails>
+          element: <PrivateRoute><RoomDetails></RoomDetails></PrivateRoute>
         },
         {
           path: 'mybooking',
-          element: <Mybooking></Mybooking>
+          element: <PrivateRoute><Mybooking></Mybooking></PrivateRoute>
         },
         {
           path: 'update/:id',

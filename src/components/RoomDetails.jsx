@@ -100,15 +100,15 @@ const RoomDetails = () => {
                     <p className='mt-5 text-center text-2xl'>No offers available.</p>
                 )}
 
-                {
+                Select Date: {
 
-                    <input type="date" name="date" id="" onChange={(e) => setDate(e.target.value)} />
+                    <input className='mt-5 mb-8' type="date" name="date" id="" onChange={(e) => setDate(e.target.value)} />
                 }
 
 <br />
 
                 {date && <>
-                    <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>Booking Summery</button>
+                    <button className="bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded w-full" onClick={() => document.getElementById('my_modal_3').showModal()}>Booking Summery</button>
                     <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
                             <form method="dialog">
@@ -124,9 +124,9 @@ const RoomDetails = () => {
                 </>}
 
 
-                {date ? <div className="card-actions justify-center mt-8">
-                    <button className="btn btn-primary bg-[#2b3440] hover:bg-[#2b3440] w-full " onClick={handleMyBooking}>{availability === "available" ? "Book Now" : "Not available"}</button>
-                </div> : <button className='btn btn-accent font-bold'>Please Select Date</button> }
+                {date ? <div className="card-actions justify-center mt-4">
+                    <button className=" bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded w-full " onClick={handleMyBooking}>{availability === "available" ? "Book Now" : "Not available"}</button>
+                </div> : <button className='bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded'>Please Select Date</button> }
 
             </div>
 

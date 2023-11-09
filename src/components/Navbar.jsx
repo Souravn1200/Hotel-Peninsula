@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import swal from 'sweetalert';
+
 
 const Navbar = () => {
 
 const {user, logOut} = useContext(AuthContext);
-    
+const navigate = useNavigate()
 const handleSingOut = () => [
   logOut()
   .then( () => {
     swal("Logged Outt!", "See ya", "info");
+    navigate('/')
       console.log('user loged out');
   })
   .catch
