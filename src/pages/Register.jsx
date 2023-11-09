@@ -66,7 +66,7 @@ const Register = () => {
 
         
         <div className='flex justify-center items-center h-screen gap-10'>
-           
+            <Pagetitle title={'Regiseter page'}></Pagetitle>
         <div>
         <img src="https://i.ibb.co/G3Pgsgq/preview.png" className='h-[600px] -ml-16
                     ' alt="" />
