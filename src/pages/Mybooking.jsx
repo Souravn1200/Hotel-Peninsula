@@ -3,6 +3,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import Pagetitle from '../components/Pagetitle';
 
 const Mybooking = () => {
   const { user } = useContext(AuthContext);
@@ -68,7 +69,10 @@ const Mybooking = () => {
 
 
   return (
+   <div>
+     <div> <Pagetitle title={'My Booking'}></Pagetitle> </div>
     <div className="grid grid-cols-2 ml-28 gap-4 mb-5">
+       
   {myBookings?.length ? (
     myBookings.map(book => (
       <div key={book._id}>
@@ -102,6 +106,7 @@ const Mybooking = () => {
 
   )}
 </div>
+   </div>
 
   );
 };
