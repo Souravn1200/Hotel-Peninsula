@@ -116,16 +116,24 @@ const RoomDetails = () => {
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             </form>
 
+                            <div className='flex gap-5'>
                             <img src={image1} alt="" />
+                            <div className='mt-6'>
                             <h3 className="font-bold text-lg">{room_description}</h3>
-                            <p className="py-4">{price_per_night}</p>
+                            <p className="py-1 mt-3">Price: {price_per_night}</p>
+                            <p className="py-1">Size: {room_size}</p>
+                            <p className="py-1">Date: {date}</p>
+                            </div>
+                            </div>
+                           
+                          
                         </div>
                     </dialog>
                 </>}
 
 
                 {date ? <div className="card-actions justify-center mt-4">
-                    <button className=" bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded w-full " onClick={handleMyBooking}>{availability === "available" ? "Book Now" : "Not available"}</button>
+                    <button className=" bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded w-full" onClick={handleMyBooking}>{availability === "available" ? "Book Now" : "Not available"}</button>
                 </div> : <button className='bg-[#2b3440] hover:bg-[#0f1a29] text-white font-bold py-2 px-4 rounded'>Please Select Date</button> }
 
             </div>

@@ -73,14 +73,16 @@ const Mybooking = () => {
     myBookings.map(book => (
       <div key={book._id}>
         <div className="card w-96 bg-slate-700">
-          <figure><img src={book.image1} alt="Shoes" /></figure>
+          <figure className='mt-8'><img  src={book.image1} alt="Shoes" /></figure>
           <div className="card-body">
             <h2 className="card-title text-white">{book.room_description}</h2>
+            <p className='text-white'>Booking date: {book.date}</p>
+        <p className='text-white'>Price: {book.price_per_night}$</p>
+
             <div className='flex justify-around gap-10 mt-5'>
             <div className="card-actions justify-start">
 
-        <p className='text-white'>Booking date: {book.date}</p>
-        <p className='text-white'>Price: {book.price_per_night}$</p>
+       
 
           <Link to={`/update/${book._id}`}> <button className="btn btn-accent ">Update Date</button> </Link>
 
