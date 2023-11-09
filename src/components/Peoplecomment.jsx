@@ -11,7 +11,7 @@ const Peoplecomment = () => {
 <div className="card w-96 bg-base-100 mr-3 ">
   <div className="card-body">
     <h2 className="card-title">LuxTraveler22</h2>
-    <p>  Staying at <span className='italic font-bold text-black'> Peninsula </span> was pure luxury! From the elegant decor to the top-notch service, it's a haven for travelers seeking perfection. A definite must for my future trips!</p>
+    <p>  Staying at <span className='italic font-bold text-black'> Peninsula </span> was pure luxury! From the elegant decor to the top-notch service, its a   haven for  travelers seeking perfection. A definite must for my future trips!</p>
    
   </div>
 </div>
